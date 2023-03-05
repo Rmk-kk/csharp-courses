@@ -17,6 +17,7 @@ public class FakeCourseService : ICourseService
             Name = request.Name,
             StartDate = request.StartDate,
             Status = request.Status,
+            CourseSize = request.CourseSize,
         };
         _courses[course.Id] = course;
         return course;

@@ -4,15 +4,24 @@ using NetCoreCourse.DTOs;
 using NetCoreCourse.Models;
 using NetCoreCourse.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 
 public class CourseController : ApiControllerBase
 {
     private readonly ILogger<CourseController> _logger;
     private readonly ICourseService _service;
-    public CourseController(ICourseService service, ILogger<CourseController> logger)
+    private readonly IConfiguration _config;
+    private readonly IOptions<CourseSettings> _settings;
+
+    public CourseController(ICourseService service, 
+                            IOptions<CourseSettings> settings,
+                            ILogger<CourseController> logger, 
+                            IConfiguration config)
     {
         _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         _service = service;
+        _config = config;
+        _settings = settings;
     }
 
     //Get all
@@ -36,9 +45,24 @@ public class CourseController : ApiControllerBase
 
     //Create new
     [HttpPost]
-    public Course? Create(CourseDTO request)
+    public ActionResult<Course?> Create(CourseDTO request)
     {
-        return _service.Create(request);
+        // var minSize = _config.GetValue<int>("Course:Size:Min");
+        // var maxSize = _config.GetValue<int>("Course:Size:Max");
+        // if(request.CourseSize < minSize || request.CourseSize > maxSize)
+        // {
+        //     return BadRequest("Wrong group size.");
+        // }
+        if(request.CourseSize > _settings.Value.MaxSize || request.CourseSize < _settings.Value.MinSize)
+        {
+            return BadRequest("Wrong group size.");
+        }
+        var course = _service.Create(request);
+        if(course is null)
+        {
+            return BadRequest();
+        }
+        return course;
     }
 
     //Update by Id

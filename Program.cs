@@ -1,4 +1,5 @@
 using NetCoreCourse.Services;
+using NetCoreCourse.Models;
 using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -16,6 +17,7 @@ builder.Services.AddSwaggerGen();
 //singleton only because not real database
 builder.Services.AddSingleton<ICourseService, FakeCourseService>();
 
+builder.Services.Configure<CourseSettings>(builder.Configuration.GetSection("Course:Size"));
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
