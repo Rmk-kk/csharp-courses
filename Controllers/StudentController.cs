@@ -4,7 +4,6 @@ using NetCoreCourse.DTOs;
 using NetCoreCourse.Models;
 using NetCoreCourse.Services;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Options;
 
 public class StudentController : ApiControllerBase
 {
