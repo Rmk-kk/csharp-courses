@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using NetCoreCourse.Models;
 using NetCoreCourse.Common;
 
-public class CourseDTO : BaseDTO<Course> 
+public class CourseDTO : BaseDTO<Course>
 {
     // [MinLength(5, ErrorMessage = "Name is too short, 5 chars minimum")]
     [StringLength(200, MinimumLength = 5, ErrorMessage = "max 200, min 5.")]
@@ -21,5 +21,6 @@ public class CourseDTO : BaseDTO<Course>
         model.CourseSize = CourseSize;
         model.StartDate = StartDate;
         model.Status = Status;
+        model.UpdatedAt = DateTime.Now;
     }
 }
