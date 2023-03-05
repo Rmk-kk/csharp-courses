@@ -9,11 +9,11 @@ using Microsoft.Extensions.Options;
 public class StudentController : ApiControllerBase
 {
     private readonly ILogger<StudentController> _logger;
-    private readonly IStudentService _service;
+    private readonly ICrudService<Student, StudentDTO> _service;
     private readonly IConfiguration _config;
     // private readonly IOptions<CourseSettings> _settings;
 
-    public StudentController(IStudentService service, 
+    public StudentController(ICrudService<Student, StudentDTO> service, 
                             ILogger<StudentController> logger, 
                             IConfiguration config)
     {

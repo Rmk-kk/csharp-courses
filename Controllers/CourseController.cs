@@ -9,11 +9,11 @@ using Microsoft.Extensions.Options;
 public class CourseController : ApiControllerBase
 {
     private readonly ILogger<CourseController> _logger;
-    private readonly ICourseService _service;
+    private readonly ICrudService<Course, CourseDTO> _service;
     private readonly IConfiguration _config;
     private readonly IOptions<CourseSettings> _settings;
 
-    public CourseController(ICourseService service, 
+    public CourseController(ICrudService<Course, CourseDTO> service, 
                             IOptions<CourseSettings> settings,
                             ILogger<CourseController> logger, 
                             IConfiguration config)
@@ -47,12 +47,6 @@ public class CourseController : ApiControllerBase
     [HttpPost]
     public ActionResult<Course?> Create(CourseDTO request)
     {
-        // var minSize = _config.GetValue<int>("Course:Size:Min");
-        // var maxSize = _config.GetValue<int>("Course:Size:Max");
-        // if(request.CourseSize < minSize || request.CourseSize > maxSize)
-        // {
-        //     return BadRequest("Wrong group size.");
-        // }
         if(request.CourseSize > _settings.Value.MaxSize || request.CourseSize < _settings.Value.MinSize)
         {
             return BadRequest("Wrong group size.");

@@ -5,26 +5,22 @@ using NetCoreCourse.Models;
 using NetCoreCourse.Common;
 using System.Collections.Generic;
 
-public class CourseDTO : IValidatableObject
+public class CourseDTO : BaseDTO<Course> 
 {
-    // [MinLength(5, ErrorMessage = "Name is too short, 5 chars minimum")]
+    [MinLength(5, ErrorMessage = "Name is too short, 5 chars minimum")]
     [StringLength(200, MinimumLength = 5, ErrorMessage = "max 200, min 5.")]
-    public string? Name {get; set;}
+    public string Name {get; set;}
 
     [CourseStartDate(ErrorMessage = "Start Date should be same year.")]
     public DateTime StartDate {get; set;}
-
     public int CourseSize {get; set;}
     public Course.CourseStatus Status {get; set;}
-    public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+
+      public override void UpdateModel(Course model)
     {
-        if(StartDate < DateTime.Now && Status == Course.CourseStatus.NotStarted)
-        {
-            yield return new ValidationResult("Wrong Status. Course should've start already.", new string[]{nameof(Status)});
-        }
-        if(!Name!.StartsWith("FIN"))
-        {
-            yield return new ValidationResult("Wrong course name. Must start with FIN.", new string[]{nameof(Name)});
-        }
+        Name = model.Name;
+        CourseSize = model.CourseSize;
+        StartDate = model.StartDate;
+        Status = model.Status;
     }
 }

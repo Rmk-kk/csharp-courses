@@ -1,5 +1,6 @@
 using NetCoreCourse.Services;
 using NetCoreCourse.Models;
+using NetCoreCourse.DTOs;
 using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,8 +16,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 //singleton only because not real database
-builder.Services.AddSingleton<ICourseService, FakeCourseService>();
-builder.Services.AddSingleton<IStudentService, FakeStudentService>();
+builder.Services.AddSingleton<ICrudService<Course, CourseDTO>, FakeCrudService<Course, CourseDTO>>();
+builder.Services.AddSingleton<ICrudService<Student, StudentDTO>, FakeCrudService<Student, StudentDTO>>();
 
 builder.Services.Configure<CourseSettings>(builder.Configuration.GetSection("Course:Size"));
 var app = builder.Build();
