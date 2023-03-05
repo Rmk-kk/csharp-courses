@@ -36,29 +36,26 @@ public class CourseController : ApiControllerBase
 
     //Create new
     [HttpPost]
-    public IActionResult Create(CourseDTO request)
+    public Course? Create(CourseDTO request)
     {
-        return Ok(_service.Create(request));
+        return _service.Create(request);
     }
 
     //Update by Id
     [HttpPut("{id:int}")]
-    public IActionResult Update(int id, CourseDTO request)
+    public ActionResult<Course?> Update(int id, CourseDTO request)
     {
         var course = _service.Update(id, request);
         if(course is null)
         {
             return NotFound("Course is not found.");
         }
-        else 
-        {
-            return Ok(course);
-        }
+        return course;
     }
 
     //Delete by Id
     [HttpDelete("{id}")]
-    public IActionResult Delete(int id)
+    public ActionResult Delete(int id)
     {
         if(_service.Delete(id)) 
         {
