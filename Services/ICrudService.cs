@@ -3,11 +3,11 @@ namespace NetCoreCourse.Services;
 using NetCoreCourse.Models;
 using NetCoreCourse.DTOs;
 
-public interface ICrudService<T, D>
+public interface ICrudService<TModel, TDto>
 {
-    T? Create(D request);
-    T? Get(int id);
-    T? Update(int id, D request);
+    TModel? Create(TDto request);
+    TModel? Get(int id);
+    TModel? Update(int id, TDto request);
     bool Delete(int id);
-    ICollection<T> GetAll();
+    ICollection<TModel> GetAll();
 }

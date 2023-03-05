@@ -16,6 +16,7 @@ builder.Services.AddSwaggerGen();
 
 //singleton only because not real database
 builder.Services.AddSingleton<ICourseService, FakeCourseService>();
+builder.Services.AddSingleton<IStudentService, FakeStudentService>();
 
 builder.Services.Configure<CourseSettings>(builder.Configuration.GetSection("Course:Size"));
 var app = builder.Build();
