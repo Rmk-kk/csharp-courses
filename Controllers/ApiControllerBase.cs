@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 [Produces(MediaTypeNames.Application.Json)]
 [Consumes(MediaTypeNames.Application.Json)]
 [Route("[controller]s")]
-public class ApiControllerBase : ControllerBase 
+public abstract class ApiControllerBase : ControllerBase 
 {
 
 }

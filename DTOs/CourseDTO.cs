@@ -5,6 +5,7 @@ using NetCoreCourse.Models;
 using NetCoreCourse.Common;
 
 public class CourseDTO : BaseDTO<Course>
+// , IValidatableObject
 {
     // [MinLength(5, ErrorMessage = "Name is too short, 5 chars minimum")]
     [StringLength(200, MinimumLength = 5, ErrorMessage = "max 200, min 5.")]

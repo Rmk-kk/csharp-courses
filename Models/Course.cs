@@ -1,6 +1,6 @@
 namespace NetCoreCourse.Models;
 
-public class Course : BaseModel
+public class Course 
 {
     public string Name {get; set;}
     public DateTime StartDate {get; set;}
