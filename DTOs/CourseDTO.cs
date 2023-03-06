@@ -9,7 +9,7 @@ public class CourseDTO : BaseDTO<Course>
 {
     // [MinLength(5, ErrorMessage = "Name is too short, 5 chars minimum")]
     [StringLength(200, MinimumLength = 5, ErrorMessage = "max 200, min 5.")]
-    public string Name {get; set;}
+    public string Name {get; set;} = string.Empty;
 
     [CourseStartDate(ErrorMessage = "Start Date should be same year.")]
     public DateTime StartDate {get; set;}

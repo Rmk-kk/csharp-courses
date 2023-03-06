@@ -31,3 +31,9 @@ D:\C#\FS13\NetCoreCourse\obj\Debug\net7.0\refint\NetCoreCourse.dll
 D:\C#\FS13\NetCoreCourse\obj\Debug\net7.0\NetCoreCourse.pdb
 D:\C#\FS13\NetCoreCourse\obj\Debug\net7.0\NetCoreCourse.genruntimeconfig.cache
 D:\C#\FS13\NetCoreCourse\obj\Debug\net7.0\ref\NetCoreCourse.dll
+D:\C#\FS13\NetCoreCourse\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.dll
+D:\C#\FS13\NetCoreCourse\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+D:\C#\FS13\NetCoreCourse\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Relational.dll
+D:\C#\FS13\NetCoreCourse\bin\Debug\net7.0\Npgsql.dll
+D:\C#\FS13\NetCoreCourse\bin\Debug\net7.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
+D:\C#\FS13\NetCoreCourse\bin\Debug\net7.0\EFCore.NamingConventions.dll

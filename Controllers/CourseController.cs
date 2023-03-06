@@ -15,8 +15,13 @@ public class CourseController : CrudController<Course, CourseDTO>
         _service = service;
     }
 
-    [HttpGet("{status}")]
-    public ICollection<Course> GetCoursesByStatus(Course.CourseStatus status)
+    // [HttpGet("{status}")]
+    // public ICollection<Course> GetCoursesByStatus(Course.CourseStatus status)
+    // {
+    //     return _service.GetCoursesByStatus(status);
+    // }
+    [HttpGet("status")]
+    public ICollection<Course> GetCoursesByStatus([FromQuery] Course.CourseStatus status)
     {
         return _service.GetCoursesByStatus(status);
     }
