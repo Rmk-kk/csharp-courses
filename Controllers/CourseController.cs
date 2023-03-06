@@ -3,12 +3,21 @@ namespace NetCoreCourse.Controllers;
 using NetCoreCourse.DTOs;
 using NetCoreCourse.Models;
 using NetCoreCourse.Services;
+using Microsoft.AspNetCore.Mvc;
 
 public class CourseController : CrudController<Course, CourseDTO>
 {
     private readonly ILogger<CourseController> _logger;
-    public CourseController(ILogger<CourseController> logger, ICrudService<Course, CourseDTO> service) : base(service)
+    private readonly ICourseService _service;
+    public CourseController(ILogger<CourseController> logger, ICourseService service) : base(service)
     {
         _logger = logger;
+        _service = service;
+    }
+
+    [HttpGet("{status}")]
+    public ICollection<Course> GetCoursesByStatus(Course.CourseStatus status)
+    {
+        return _service.GetCoursesByStatus(status);
     }
 }

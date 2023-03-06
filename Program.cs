@@ -16,7 +16,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 //singleton only because not real database
-builder.Services.AddSingleton<ICrudService<Course, CourseDTO>, FakeCrudService<Course, CourseDTO>>();
+builder.Services.AddSingleton<ICourseService, FakeCourseService>();
 builder.Services.AddSingleton<ICrudService<Student, StudentDTO>, FakeCrudService<Student, StudentDTO>>();
 
 builder.Services.Configure<CourseSettings>(builder.Configuration.GetSection("Course:Size"));
