@@ -22,8 +22,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 //singleton only because not real database
-builder.Services.AddSingleton<ICourseService, FakeCourseService>();
-builder.Services.AddSingleton<ICrudService<Student, StudentDTO>, FakeCrudService<Student, StudentDTO>>();
+builder.Services.AddSingleton<ICourseService, DbCourseService>();
+builder.Services.AddSingleton<ICrudService<Student, StudentDTO>, DbCrudService<Student, StudentDTO>>();
 
 //configuration file for Course
 builder.Services.Configure<CourseSettings>(builder.Configuration.GetSection("Course:Size"));
@@ -39,7 +39,7 @@ if (app.Environment.IsDevelopment())
     using(var scope = app.Services.CreateScope())
     {
         var dbContext = scope.ServiceProvider.GetService<AppDbContext>();
-        dbContext.Database.EnsureDeleted();
+        dbContext!.Database.EnsureDeleted();
         dbContext.Database.EnsureCreated();
     }
 }

@@ -4,6 +4,6 @@ using System.Collections.Concurrent;
 
 namespace NetCoreCourse.Services;
 
-public class FakeStudentService : FakeCrudService<Student, StudentDTO>
+public class DbStudentService : FakeCrudService<Student, StudentDTO>
 {
 }

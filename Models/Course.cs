@@ -1,9 +1,11 @@
 namespace NetCoreCourse.Models;
 
 using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 
 public class Course : BaseModel
 {
+    [MaxLength(256)]
     public string Name {get; set;} = null!;
     public string? Description {get; set;} 
     public DateTime StartDate {get; set;}

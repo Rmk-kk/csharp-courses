@@ -7,6 +7,8 @@ using Npgsql;
 public class AppDbContext : DbContext
 {
     private readonly IConfiguration _config;
+    public DbSet<Course> Courses {get; set;} = null!;
+    public DbSet<Student> Students {get; set;} = null!;
     public AppDbContext(IConfiguration config) => _config = config;
     //with static created only once
     static AppDbContext() => NpgsqlConnection.GlobalTypeMapper.MapEnum<Course.CourseStatus>();
@@ -27,6 +29,4 @@ public class AppDbContext : DbContext
             .HasIndex(course => course.Name);
         base.OnModelCreating(modelBuilder);
     }
-
-    public DbSet<Course> Courses {get; set;} = null!;
 }
