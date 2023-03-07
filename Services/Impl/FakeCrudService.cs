@@ -8,7 +8,7 @@ public class FakeCrudService<TModel, TDto> : ICrudService<TModel, TDto>
     where TModel : BaseModel, new()
     where TDto : BaseDTO<TModel>
 {
-    private ConcurrentDictionary<int, TModel> _items = new();
+    protected ConcurrentDictionary<int, TModel> _items = new();
     private int _itemId;
  
     public TModel? Create(TDto request)
