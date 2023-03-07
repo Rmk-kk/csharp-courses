@@ -21,8 +21,8 @@ public class CourseController : CrudController<Course, CourseDTO>
     //     return _service.GetCoursesByStatus(status);
     // }
     [HttpGet("status")]
-    public ICollection<Course> GetCoursesByStatus([FromQuery] Course.CourseStatus status)
+    public async Task<ICollection<Course>> GetCoursesByStatusAsync([FromQuery] Course.CourseStatus status)
     {
-        return _service.GetCoursesByStatus(status);
+        return await _service.GetCoursesByStatusAsync(status);
     }
 }

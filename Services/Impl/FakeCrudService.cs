@@ -11,7 +11,7 @@ public class FakeCrudService<TModel, TDto> : ICrudService<TModel, TDto>
     protected ConcurrentDictionary<int, TModel> _items = new();
     private int _itemId;
  
-    public TModel? Create(TDto request)
+    public async Task<TModel?> CreateAsync(TDto request)
     {
         var item = new TModel
         {
@@ -22,7 +22,7 @@ public class FakeCrudService<TModel, TDto> : ICrudService<TModel, TDto>
         return item;
     }
 
-    public bool Delete(int id)
+    public async Task<bool> DeleteAsync(int id)
     {
         if(!_items.ContainsKey(id))
         {
@@ -31,7 +31,7 @@ public class FakeCrudService<TModel, TDto> : ICrudService<TModel, TDto>
         return _items.Remove(id, out _);
     }
 
-    public TModel? Get(int id)
+    public async Task<TModel?> GetByIdAsync(int id)
     {
         if(_items.TryGetValue(id, out var item))
         {
@@ -40,14 +40,14 @@ public class FakeCrudService<TModel, TDto> : ICrudService<TModel, TDto>
         return null;
     }
 
-    public ICollection<TModel> GetAll()
+    public async Task<ICollection<TModel>> GetAllAsync()
     {
         return _items.Values;
     }
 
-    public TModel? Update(int id, TDto request)
+    public async Task<TModel?> UpdateAsync(int id, TDto request)
     {
-        var item = Get(id);
+        var item = await GetByIdAsync(id);
         if(item is null)
         {
             return null;

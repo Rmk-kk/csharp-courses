@@ -5,5 +5,5 @@ using NetCoreCourse.DTOs;
 
 public interface ICourseService : ICrudService<Course, CourseDTO>
 {
-    Task<ICollection<Course>> GetCoursesByStatus(Course.CourseStatus status);
+    Task<ICollection<Course>> GetCoursesByStatusAsync(Course.CourseStatus status);
 }
