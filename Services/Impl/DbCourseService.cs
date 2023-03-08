@@ -13,6 +13,8 @@ public class DbCourseService : DbCrudService<Course, CourseDTO>, ICourseService
 
     public async Task<ICollection<Course>> GetCoursesByStatusAsync(Course.CourseStatus status)
     {
-       return await _dbContext.Courses.Where(c => c.Status == status).ToListAsync();
+       return await _dbContext.Courses
+                        .Where(c => c.Status == status)
+                        .ToListAsync();
     }
 }

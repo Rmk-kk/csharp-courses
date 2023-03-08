@@ -5,6 +5,7 @@ using System.Text.Json.Serialization;
 using NetCoreCourse.Db;
 using Microsoft.EntityFrameworkCore;
 
+AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -22,11 +23,13 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 //singleton only because not real database
-builder.Services.AddSingleton<ICourseService, DbCourseService>();
-builder.Services.AddSingleton<ICrudService<Student, StudentDTO>, DbCrudService<Student, StudentDTO>>();
+builder.Services.AddScoped<ICourseService, DbCourseService>();
+builder.Services.AddScoped<ICrudService<Student, StudentDTO>, DbStudentService>();
 
 //configuration file for Course
 builder.Services.Configure<CourseSettings>(builder.Configuration.GetSection("Course:Size"));
+
+
 
 var app = builder.Build();
 
@@ -35,7 +38,7 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
-    
+
     using(var scope = app.Services.CreateScope())
     {
         var dbContext = scope.ServiceProvider.GetService<AppDbContext>();
