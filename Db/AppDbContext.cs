@@ -11,7 +11,10 @@ public class AppDbContext : DbContext
     public DbSet<Student> Students {get; set;} = null!;
     public AppDbContext(IConfiguration config) => _config = config;
     //with static created only once
-    static AppDbContext() => NpgsqlConnection.GlobalTypeMapper.MapEnum<Course.CourseStatus>();
+    static AppDbContext() {
+        NpgsqlConnection.GlobalTypeMapper.MapEnum<Course.CourseStatus>();
+        AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
+    }
         
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {

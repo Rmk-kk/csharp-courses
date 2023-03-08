@@ -20,9 +20,21 @@ public class CourseController : CrudController<Course, CourseDTO>
     // {
     //     return _service.GetCoursesByStatus(status);
     // }
-    [HttpGet("status")]
-    public async Task<ICollection<Course>> GetCoursesByStatusAsync([FromQuery] Course.CourseStatus status)
+    
+    // [HttpGet("status")]
+    // public async Task<ICollection<Course>> GetCoursesByStatusAsync([FromQuery] Course.CourseStatus status)
+    // {
+        
+    // }
+
+    [HttpGet]
+    public async override Task<ICollection<Course>> GetAllAsync()
     {
-        return await _service.GetCoursesByStatusAsync(status);
+        var queryStatus = HttpContext.Request.Query["status"];
+        if(Enum.TryParse(queryStatus, true, out Course.CourseStatus status))
+        {
+            return await _service.GetCoursesByStatusAsync(status);
+        }
+        return await _service.GetAllAsync();
     }
 }

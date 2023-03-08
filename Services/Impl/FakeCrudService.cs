@@ -13,46 +13,59 @@ public class FakeCrudService<TModel, TDto> : ICrudService<TModel, TDto>
  
     public async Task<TModel?> CreateAsync(TDto request)
     {
-        var item = new TModel
-        {
-            Id = Interlocked.Increment(ref _itemId),
-        };
-        _items[item.Id] = item;
-        request.UpdateModel(item);
-        return item;
+        return await Task.Run(() => {
+            var item = new TModel
+                {
+                    Id = Interlocked.Increment(ref _itemId),
+                };
+            _items[item.Id] = item;
+            request.UpdateModel(item);
+            return item;
+        });
     }
 
     public async Task<bool> DeleteAsync(int id)
     {
+        return await Task.Run(() => 
+        {
         if(!_items.ContainsKey(id))
         {
             return false;
         }
         return _items.Remove(id, out _);
+        });
+        
     }
 
     public async Task<TModel?> GetByIdAsync(int id)
     {
+        return await Task.Run(() => 
+        {
         if(_items.TryGetValue(id, out var item))
         {
             return item;
         }
         return null;
+        });
+
     }
 
-    public async Task<ICollection<TModel>> GetAllAsync()
+    public Task<ICollection<TModel>> GetAllAsync()
     {
-        return _items.Values;
+        return Task.FromResult(_items.Values);
     }
 
     public async Task<TModel?> UpdateAsync(int id, TDto request)
     {
-        var item = await GetByIdAsync(id);
-        if(item is null)
+        return await Task.Run(async () => 
         {
-            return null;
-        }
-        request.UpdateModel(item);
-        return item;
+            var item = await GetByIdAsync(id);
+            if(item is null)
+            {
+                return null;
+            }
+            request.UpdateModel(item);
+            return item;
+        });
     }
 }

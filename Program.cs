@@ -5,7 +5,6 @@ using System.Text.Json.Serialization;
 using NetCoreCourse.Db;
 using Microsoft.EntityFrameworkCore;
 
-AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -28,8 +27,6 @@ builder.Services.AddScoped<ICrudService<Student, StudentDTO>, DbStudentService>(
 
 //configuration file for Course
 builder.Services.Configure<CourseSettings>(builder.Configuration.GetSection("Course:Size"));
-
-
 
 var app = builder.Build();
 
