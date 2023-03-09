@@ -19,5 +19,6 @@ public class StudentDTO : BaseDTO<Student>
        model.FirstName = FirstName;
        model.LastName = LastName;
        model.Email = Email;
+       model.UpdatedAt = DateTime.Now;
     }
 }

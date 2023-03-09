@@ -50,7 +50,7 @@ public class FakeCrudService<TModel, TDto> : ICrudService<TModel, TDto>
 
     }
 
-    public Task<ICollection<TModel>> GetAllAsync()
+    public Task<ICollection<TModel>> GetAllAsync(int page, int pageSize)
     {
         return Task.FromResult(_items.Values);
     }
