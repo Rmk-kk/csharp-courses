@@ -40,7 +40,7 @@ public class DbCrudService<TModel, TDto> : ICrudService<TModel, TDto>
         return await _dbContext.Set<TModel>().FindAsync(id);
     }
 
-    public async Task<ICollection<TModel>> GetAllAsync(int page = 0, int pageSize = 9)
+    public virtual async Task<ICollection<TModel>> GetAllAsync(int page = 0, int pageSize = 9)
     {
         // return await _dbContext.Set<TModel>()
         //             .Skip(page * pageSize)

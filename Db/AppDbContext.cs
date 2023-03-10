@@ -44,6 +44,39 @@ public class AppDbContext : DbContext
             .HasIndex(s => s.Email)
             .IsUnique();
 
+        modelBuilder.Entity<Student>()
+            .Property(s => s.CreatedAt)
+            .HasDefaultValueSql("CURRENT_TIMESTAMP");
+        
+        modelBuilder.Entity<Student>()
+            .Property(s => s.UpdatedAt)
+            .HasDefaultValueSql("CURRENT_TIMESTAMP");
+
+        modelBuilder.Entity<Address>()
+            .Property(s => s.CreatedAt)
+            .HasDefaultValueSql("CURRENT_TIMESTAMP");
+
+        modelBuilder.Entity<Address>()
+            .Property(s => s.UpdatedAt)
+            .HasDefaultValueSql("CURRENT_TIMESTAMP");
+
+        modelBuilder.Entity<Student>()
+            .HasOne(s => s.Address)
+            .WithOne()
+            .OnDelete(DeleteBehavior.SetNull);
+
+        //include whole address when returning student from DB
+        //First option: (second option in student service)
+        // modelBuilder.Entity<Student>()
+        //     .Navigation(s => s.Address)
+        //     .AutoInclude();
+
+        var entities = modelBuilder.Model.GetEntityTypes();
+        foreach(var entity in entities)
+        {
+            Console.WriteLine(entity);
+        }
+
         base.OnModelCreating(modelBuilder);
     }
 }

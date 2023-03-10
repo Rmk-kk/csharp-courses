@@ -19,4 +19,5 @@ public class Student : BaseModel
     public string Email {get; set;} = null!;
 
     public Address? Address {get; set;}
+    public int? AddressId {get; set;} 
 }

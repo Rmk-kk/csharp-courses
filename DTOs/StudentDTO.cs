@@ -14,10 +14,16 @@ public class StudentDTO : BaseDTO<Student>
     [EmailAddress]
     public string Email {get; set;} = null!;
 
+    public AddressDTO Address {get; set;} = null!;
+
     public override void UpdateModel(Student model)
     {
        model.FirstName = FirstName;
        model.LastName = LastName;
        model.Email = Email;
+       
+       var address = new Address();
+       Address.UpdateModel(address);
+       model.Address = address;
     }
 }
