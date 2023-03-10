@@ -11,6 +11,7 @@ public class AppDbContext : DbContext
     private readonly ILogger<AppDbContext> _logger;
     public DbSet<Course> Courses {get; set;} = null!;
     public DbSet<Student> Students {get; set;} = null!;
+    public DbSet<Address> Addresses {get; set;} = null!;
     public AppDbContext(IConfiguration config, ILogger<AppDbContext> logger, DbContextOptions<AppDbContext> options) : base(options)
     {
         _config = config;
@@ -28,7 +29,7 @@ public class AppDbContext : DbContext
         
         optionsBuilder.UseNpgsql(connectionString)
                       .UseSnakeCaseNamingConvention()
-                      .LogTo(m => Debug.WriteLine(m));
+                      .AddInterceptors(new AppDbContextSaveChangesInterceptor());
     }       
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -38,6 +39,11 @@ public class AppDbContext : DbContext
         //add indexing
         modelBuilder.Entity<Course>()
             .HasIndex(course => course.Name);
+
+        modelBuilder.Entity<Student>()
+            .HasIndex(s => s.Email)
+            .IsUnique();
+
         base.OnModelCreating(modelBuilder);
     }
 }

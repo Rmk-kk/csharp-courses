@@ -24,6 +24,5 @@ public class CourseDTO : BaseDTO<Course>
         model.Description = Description;
         model.StartDate = StartDate;
         model.Status = Status;
-        model.UpdatedAt = DateTime.Now;
     }
 }

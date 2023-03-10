@@ -40,13 +40,13 @@ public class DbCrudService<TModel, TDto> : ICrudService<TModel, TDto>
         return await _dbContext.Set<TModel>().FindAsync(id);
     }
 
-    public async Task<ICollection<TModel>> GetAllAsync(int page, int pageSize)
+    public async Task<ICollection<TModel>> GetAllAsync(int page = 0, int pageSize = 9)
     {
-        return await _dbContext.Set<TModel>()
-                    .OrderBy(c => c.Id)
-                    .Skip(page * pageSize)
-                    .Take(9)
-                    .ToListAsync();
+        // return await _dbContext.Set<TModel>()
+        //             .Skip(page * pageSize)
+        //             .Take(9)
+        //             .ToListAsync();
+        return await _dbContext.Set<TModel>().OrderBy(c => c.Id).ToListAsync();
     }
 
     public async Task<TModel?> UpdateAsync(int id, TDto request)
