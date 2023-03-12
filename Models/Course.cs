@@ -2,12 +2,16 @@ namespace NetCoreCourse.Models;
 
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 public class Course : BaseModel
 {
     [MaxLength(256)]
     public string Name {get; set;} = null!;
+
+    [JsonIgnore]
     public string? Description {get; set;} 
+    
     public DateTime StartDate {get; set;}
     public DateTime EndDate {get; set;}
     public CourseStatus Status {get; set;}

@@ -11,11 +11,30 @@ public class DbCourseService : DbCrudService<Course, CourseDTO>, ICourseService
     {
     }
 
-    public async Task<ICollection<Course>> GetCoursesByStatusAsync(Course.CourseStatus status)
+    public async Task<ICollection<Course>> GetCoursesByStatusAsync(FilterDTO filter)
     {
-       return await _dbContext.Courses
-                        .Where(c => c.Status == status)
-                        .ToListAsync();
+        // var query = _dbContext.Courses.Where(c => true);
+        var query = _dbContext.Courses.AsQueryable();
+        if(filter.Status is not null)
+        {
+            query = query.Where(c => c.Status == filter.Status);
+        }
+        if(!string.IsNullOrEmpty(filter.Search))
+        {
+            query = query.Where(c => c.Name.Contains(filter.Search));
+        }
+        if(filter.StartDate is not null)
+        {
+            query = query.Where(c => c.StartDate >= filter.StartDate);
+        }
+        if(filter.EndDate is not null)
+        {
+            query = query.Where(c => c.EndDate <= filter.EndDate);
+        }
+        return await query.Skip((filter.CurrentPage - 1) * filter.PageSize).Take(filter.PageSize).ToListAsync();
+        //  return await _dbContext.Courses
+        //                 .Where(c => c.Status == filter.Status)
+        //                 .ToListAsync();
     }
 
     public override async Task<Course?> GetByIdAsync(int id)

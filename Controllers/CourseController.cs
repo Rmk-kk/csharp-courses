@@ -39,8 +39,9 @@ public class CourseController : CrudController<Course, CourseDTO>
     // }
 
     [HttpGet("status")]
-    public async Task<ICollection<Course>> GetCourseByStatus([FromQuery] Course.CourseStatus status)
+    public async Task<ICollection<Course>> GetCourseByStatus([FromQuery] FilterDTO param)
     {
-        return await _service.GetCoursesByStatusAsync(status);
+        Console.WriteLine(param);
+        return await _service.GetCoursesByStatusAsync(param);
     }
 }
