@@ -20,4 +20,14 @@ public class DbStudentService : DbCrudService<Student, StudentDTO>, IStudentServ
                         .OrderBy(s => s.Id)
                         .ToListAsync();
     }
+
+    public async override Task<Student?> GetByIdAsync(int id)
+    {
+        //eager loading vs lazy loading  (remove include for lazy)
+
+        var student = await base.GetByIdAsync(id);
+        return await _dbContext.Students
+                        .Include(s => s.Address)
+                        .FirstOrDefaultAsync(s => s.Id == id);
+    }
 }

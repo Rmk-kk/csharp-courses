@@ -10,11 +10,23 @@
         "dependencies": {
           "EFCore.NamingConventions": "7.0.2",
           "Microsoft.AspNetCore.OpenApi": "7.0.1",
+          "Microsoft.EntityFrameworkCore.Proxies": "7.0.3",
           "Npgsql.EntityFrameworkCore.PostgreSQL": "7.0.3",
           "Swashbuckle.AspNetCore": "6.4.0"
         },
         "runtime": {
           "NetCoreCourse.dll": {}
+        }
+      },
+      "Castle.Core/5.1.0": {
+        "dependencies": {
+          "System.Diagnostics.EventLog": "6.0.0"
+        },
+        "runtime": {
+          "lib/net6.0/Castle.Core.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.1.0.0"
+          }
         }
       },
       "EFCore.NamingConventions/7.0.2": {
@@ -65,6 +77,18 @@
         }
       },
       "Microsoft.EntityFrameworkCore.Analyzers/7.0.3": {},
+      "Microsoft.EntityFrameworkCore.Proxies/7.0.3": {
+        "dependencies": {
+          "Castle.Core": "5.1.0",
+          "Microsoft.EntityFrameworkCore": "7.0.3"
+        },
+        "runtime": {
+          "lib/net6.0/Microsoft.EntityFrameworkCore.Proxies.dll": {
+            "assemblyVersion": "7.0.3.0",
+            "fileVersion": "7.0.323.6302"
+          }
+        }
+      },
       "Microsoft.EntityFrameworkCore.Relational/7.0.3": {
         "dependencies": {
           "Microsoft.EntityFrameworkCore": "7.0.3",
@@ -189,7 +213,8 @@
             "fileVersion": "6.4.0.0"
           }
         }
-      }
+      },
+      "System.Diagnostics.EventLog/6.0.0": {}
     }
   },
   "libraries": {
@@ -197,6 +222,13 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "Castle.Core/5.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-31UJpTHOiWq95CDOHazE3Ub/hE/PydNWsJMwnEVTqFFP4WhAugwpaVGxzOxKgNeSUUeqS2W6lxV+q7u1pAOfXg==",
+      "path": "castle.core/5.1.0",
+      "hashPath": "castle.core.5.1.0.nupkg.sha512"
     },
     "EFCore.NamingConventions/7.0.2": {
       "type": "package",
@@ -232,6 +264,13 @@
       "sha512": "sha512-CLyRWFLwaOUZNPEia/aBMzFxZqm/ITKt3B+yUFtrg4Ys5VF3n2gvneuItC9IhpeOcjfdSgu/yUKf8y/IsNHs5A==",
       "path": "microsoft.entityframeworkcore.analyzers/7.0.3",
       "hashPath": "microsoft.entityframeworkcore.analyzers.7.0.3.nupkg.sha512"
+    },
+    "Microsoft.EntityFrameworkCore.Proxies/7.0.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-mmyeZypfeFxo7Jl5fF9X0eEjTjegq1nr8R/hzFJFBdZ9D2sOESQcdcLMhhr6bnBdSqxz5jGq6FjGo9PdKlOYvA==",
+      "path": "microsoft.entityframeworkcore.proxies/7.0.3",
+      "hashPath": "microsoft.entityframeworkcore.proxies.7.0.3.nupkg.sha512"
     },
     "Microsoft.EntityFrameworkCore.Relational/7.0.3": {
       "type": "package",
@@ -358,6 +397,13 @@
       "sha512": "sha512-1Hh3atb3pi8c+v7n4/3N80Jj8RvLOXgWxzix6w3OZhB7zBGRwsy7FWr4e3hwgPweSBpwfElqj4V4nkjYabH9nQ==",
       "path": "swashbuckle.aspnetcore.swaggerui/6.4.0",
       "hashPath": "swashbuckle.aspnetcore.swaggerui.6.4.0.nupkg.sha512"
+    },
+    "System.Diagnostics.EventLog/6.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-lcyUiXTsETK2ALsZrX+nWuHSIQeazhqPphLfaRxzdGaG93+0kELqpgEHtwWOlQe7+jSFnKwaCAgL4kjeZCQJnw==",
+      "path": "system.diagnostics.eventlog/6.0.0",
+      "hashPath": "system.diagnostics.eventlog.6.0.0.nupkg.sha512"
     }
   }
 }

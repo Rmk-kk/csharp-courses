@@ -35,7 +35,7 @@ public class DbCrudService<TModel, TDto> : ICrudService<TModel, TDto>
         return true;
     }
 
-    public async Task<TModel?> GetByIdAsync(int id)
+    public virtual async Task<TModel?> GetByIdAsync(int id)
     {
         return await _dbContext.Set<TModel>().FindAsync(id);
     }
@@ -56,6 +56,7 @@ public class DbCrudService<TModel, TDto> : ICrudService<TModel, TDto>
         {
             return null;
         }
+       
         request.UpdateModel(item);
         await _dbContext.SaveChangesAsync();
         return item;

@@ -23,7 +23,7 @@ builder.Services.AddSwaggerGen();
 
 //singleton only because not real database
 builder.Services.AddScoped<ICourseService, DbCourseService>();
-builder.Services.AddScoped<ICrudService<Student, StudentDTO>, DbStudentService>();
+builder.Services.AddScoped<IStudentService, DbStudentService>();
 
 //configuration file for Course
 builder.Services.Configure<CourseSettings>(builder.Configuration.GetSection("Course:Size"));

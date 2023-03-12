@@ -59,23 +59,17 @@ public class AppDbContext : DbContext
         modelBuilder.Entity<Address>()
             .Property(s => s.UpdatedAt)
             .HasDefaultValueSql("CURRENT_TIMESTAMP");
-
+        
         modelBuilder.Entity<Student>()
             .HasOne(s => s.Address)
             .WithOne()
-            .OnDelete(DeleteBehavior.SetNull);
+            .OnDelete(DeleteBehavior.SetNull);                                              
 
         //include whole address when returning student from DB
         //First option: (second option in student service)
         // modelBuilder.Entity<Student>()
         //     .Navigation(s => s.Address)
         //     .AutoInclude();
-
-        var entities = modelBuilder.Model.GetEntityTypes();
-        foreach(var entity in entities)
-        {
-            Console.WriteLine(entity);
-        }
 
         base.OnModelCreating(modelBuilder);
     }

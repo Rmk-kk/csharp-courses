@@ -37,3 +37,5 @@ D:\C#\FS13\NetCoreCourse\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Relation
 D:\C#\FS13\NetCoreCourse\bin\Debug\net7.0\Npgsql.dll
 D:\C#\FS13\NetCoreCourse\bin\Debug\net7.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
 D:\C#\FS13\NetCoreCourse\bin\Debug\net7.0\EFCore.NamingConventions.dll
+D:\C#\FS13\NetCoreCourse\bin\Debug\net7.0\Castle.Core.dll
+D:\C#\FS13\NetCoreCourse\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Proxies.dll
