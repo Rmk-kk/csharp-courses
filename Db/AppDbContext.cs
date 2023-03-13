@@ -9,9 +9,6 @@ public class AppDbContext : DbContext
 {
     private readonly IConfiguration _config;
     private readonly ILogger<AppDbContext> _logger;
-    public DbSet<Course> Courses {get; set;} = null!;
-    public DbSet<Student> Students {get; set;} = null!;
-    public DbSet<Address> Addresses {get; set;} = null!;
     public AppDbContext(IConfiguration config, ILogger<AppDbContext> logger, DbContextOptions<AppDbContext> options) : base(options)
     {
         _config = config;
@@ -73,4 +70,9 @@ public class AppDbContext : DbContext
 
         base.OnModelCreating(modelBuilder);
     }
+
+    public DbSet<Course> Courses {get; set;} = null!;
+    public DbSet<Student> Students {get; set;} = null!;
+    public DbSet<Address> Addresses {get; set;} = null!;
+    public DbSet<Assigment> Assigments {get; set;} = null!;
 }

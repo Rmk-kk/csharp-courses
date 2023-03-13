@@ -11,7 +11,10 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services
     .AddControllers()
-    .AddJsonOptions(options => options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
+    .AddJsonOptions(options => {
+        options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+        options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+    });
 
 //Database connection
 
@@ -24,6 +27,7 @@ builder.Services.AddSwaggerGen();
 //singleton only because not real database
 builder.Services.AddScoped<ICourseService, DbCourseService>();
 builder.Services.AddScoped<IStudentService, DbStudentService>();
+builder.Services.AddScoped<IAssigmentService, DbAssigmentService>();
 
 //configuration file for Course
 builder.Services.Configure<CourseSettings>(builder.Configuration.GetSection("Course:Size"));

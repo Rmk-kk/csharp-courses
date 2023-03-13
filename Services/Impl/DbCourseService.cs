@@ -41,9 +41,19 @@ public class DbCourseService : DbCrudService<Course, CourseDTO>, ICourseService
     {
         return await _dbContext.Courses
                         .Include(c => c.Students)
+                            .ThenInclude(s => s.Address)
                         .FirstOrDefaultAsync(c => c.Id == id);
         // var course = await base.GetByIdAsync(id);
         // await _dbContext.Entry<Course>(course!).Collection(c => c.Students).LoadAsync();
         // return course;
+    }
+
+    public override async Task<ICollection<Course>> GetAllAsync(int page = 0, int pageSize = 9)
+    {
+        return await _dbContext.Courses
+                        .Include(c => c.Students)
+                            .ThenInclude(s => s.Address)
+                        .OrderBy(c => c.Id)
+                        .ToListAsync();
     }
 }

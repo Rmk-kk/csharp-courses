@@ -9,7 +9,7 @@ public abstract class CrudController<TModel, TDto> : ApiControllerBase
         where TModel : BaseModel, new() 
         where TDto : BaseDTO<TModel>
 {
-    private readonly ICrudService<TModel, TDto> _service;
+    protected readonly ICrudService<TModel, TDto> _service;
     // private readonly IConfiguration _config;
     // private readonly IOptions<CourseSettings> _settings; 
 

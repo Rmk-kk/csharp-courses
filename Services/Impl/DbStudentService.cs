@@ -17,6 +17,8 @@ public class DbStudentService : DbCrudService<Student, StudentDTO>, IStudentServ
         return await _dbContext.Students
                         .AsNoTracking()
                         .Include(s => s.Address)
+                        .Include(s => s.Course)
+                        .Include(s => s.Assigments)
                         .OrderBy(s => s.Id)
                         .ToListAsync();
     }
@@ -28,6 +30,7 @@ public class DbStudentService : DbCrudService<Student, StudentDTO>, IStudentServ
         var student = await base.GetByIdAsync(id);
         return await _dbContext.Students
                         .Include(s => s.Address)
+                        .Include(s => s.Assigments)
                         .FirstOrDefaultAsync(s => s.Id == id);
     }
 }

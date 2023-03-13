@@ -27,7 +27,8 @@ public class Student : BaseModel
     [JsonIgnore]
     public int? AddressId {get; set;} 
     
-    [JsonIgnore]
     public Course? Course {get; set;}
     public int CourseId {get; set;}
+
+    public ICollection<Assigment> Assigments {get; set;} = null!;
 }
