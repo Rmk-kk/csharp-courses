@@ -42,10 +42,6 @@ public class DbCrudService<TModel, TDto> : ICrudService<TModel, TDto>
 
     public virtual async Task<ICollection<TModel>> GetAllAsync(int page = 0, int pageSize = 9)
     {
-        // return await _dbContext.Set<TModel>()
-        //             .Skip(page * pageSize)
-        //             .Take(9)
-        //             .ToListAsync();
         return await _dbContext.Set<TModel>().OrderBy(c => c.Id).ToListAsync();
     }
 

@@ -39,3 +39,5 @@ D:\C#\FS13\NetCoreCourse\bin\Debug\net7.0\Npgsql.EntityFrameworkCore.PostgreSQL.
 D:\C#\FS13\NetCoreCourse\bin\Debug\net7.0\EFCore.NamingConventions.dll
 D:\C#\FS13\NetCoreCourse\bin\Debug\net7.0\Castle.Core.dll
 D:\C#\FS13\NetCoreCourse\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Proxies.dll
+D:\C#\FS13\NetCoreCourse\bin\Debug\net7.0\AutoMapper.dll
+D:\C#\FS13\NetCoreCourse\bin\Debug\net7.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll

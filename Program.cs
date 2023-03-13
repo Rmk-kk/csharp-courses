@@ -1,9 +1,7 @@
 using NetCoreCourse.Services;
 using NetCoreCourse.Models;
-using NetCoreCourse.DTOs;
 using System.Text.Json.Serialization;
 using NetCoreCourse.Db;
-using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,8 +14,9 @@ builder.Services
         options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
     });
 
+//Automapper
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 //Database connection
-
 builder.Services.AddDbContext<AppDbContext>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

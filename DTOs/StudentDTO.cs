@@ -24,7 +24,6 @@ public class StudentDTO : BaseDTO<Student>
        model.LastName = LastName;
        model.Email = Email;
        model.CourseId = CourseId;
-       
 
        var address = new Address();
        Address.UpdateModel(address);     

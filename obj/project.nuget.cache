@@ -1,12 +1,15 @@
 {
   "version": 2,
-  "dgSpecHash": "TycCMgWc7fN4dhTTOJ0ei98aVbM+nFkLQs0JW+gTdG5yeI1dGFXK2C2Ob+vtBm10KT91A9QAHBlT2AbMNe3n+Q==",
+  "dgSpecHash": "W3JcKyzPz5oDq2KypHiOg7yaP+Qe2TaQXoEVSrY93p6drVV7aq8YCc4Ng7Y1SAUrORlrqwJs/p+2N2/AbyhjQQ==",
   "success": true,
   "projectFilePath": "D:\\C#\\FS13\\NetCoreCourse\\NetCoreCourse.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\demia\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
+    "C:\\Users\\demia\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.0\\automapper.extensions.microsoft.dependencyinjection.12.0.0.nupkg.sha512",
     "C:\\Users\\demia\\.nuget\\packages\\castle.core\\5.1.0\\castle.core.5.1.0.nupkg.sha512",
     "C:\\Users\\demia\\.nuget\\packages\\efcore.namingconventions\\7.0.2\\efcore.namingconventions.7.0.2.nupkg.sha512",
     "C:\\Users\\demia\\.nuget\\packages\\microsoft.aspnetcore.openapi\\7.0.1\\microsoft.aspnetcore.openapi.7.0.1.nupkg.sha512",
+    "C:\\Users\\demia\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\demia\\.nuget\\packages\\microsoft.entityframeworkcore\\7.0.3\\microsoft.entityframeworkcore.7.0.3.nupkg.sha512",
     "C:\\Users\\demia\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\7.0.3\\microsoft.entityframeworkcore.abstractions.7.0.3.nupkg.sha512",
     "C:\\Users\\demia\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\7.0.3\\microsoft.entityframeworkcore.analyzers.7.0.3.nupkg.sha512",

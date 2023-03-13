@@ -4,14 +4,17 @@ using NetCoreCourse.DTOs;
 using NetCoreCourse.Models;
 using NetCoreCourse.Services;
 using Microsoft.AspNetCore.Mvc;
+using AutoMapper;
 
 public class CourseController : CrudController<Course, CourseDTO>
 {
     private readonly ILogger<CourseController> _logger;
     private readonly ICourseService _service;
-    public CourseController(ILogger<CourseController> logger, ICourseService service) : base(service)
+    private readonly IMapper _mapper;
+    public CourseController(ILogger<CourseController> logger, ICourseService service, IMapper mapper) : base(service)
     {
         _logger = logger;
+        _mapper = mapper;
         _service = service;
     }
 
@@ -38,10 +41,18 @@ public class CourseController : CrudController<Course, CourseDTO>
     //     return await _service.GetAllAsync();
     // }
 
+    // [HttpGet("status")]
+    // public async Task<ICollection<Course>> GetCourseByStatus([FromQuery] FilterDTO param)
+    // {
+    //     Console.WriteLine(param);
+    //     return await _service.GetCoursesByStatusAsync(param);
+    // }
+
     [HttpGet("status")]
-    public async Task<ICollection<Course>> GetCourseByStatus([FromQuery] FilterDTO param)
+    public async Task<ICollection<CourseDTO>> GetCourseByStatus([FromQuery] FilterDTO param)
     {
         Console.WriteLine(param);
-        return await _service.GetCoursesByStatusAsync(param);
+        var courses = _mapper.Map<ICollection<CourseDTO>>(await _service.GetCoursesByStatusAsync(param));
+        return courses;
     }
 }
