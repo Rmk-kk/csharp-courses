@@ -30,5 +30,8 @@ public class Student : BaseModel
     public Course? Course {get; set;}
     public int CourseId {get; set;}
 
+    //Direct many to many
     public ICollection<Assigment> Assigments {get; set;} = null!;
+    //Indirect
+    public ICollection<ProjectStudent> ProjectLinks {get; set;} = null!;
 }

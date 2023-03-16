@@ -41,3 +41,17 @@ D:\C#\FS13\NetCoreCourse\bin\Debug\net7.0\Castle.Core.dll
 D:\C#\FS13\NetCoreCourse\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Proxies.dll
 D:\C#\FS13\NetCoreCourse\bin\Debug\net7.0\AutoMapper.dll
 D:\C#\FS13\NetCoreCourse\bin\Debug\net7.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+D:\C#\FS13\NetCoreCourse\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\C#\FS13\NetCoreCourse\bin\Debug\net7.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+D:\C#\FS13\NetCoreCourse\bin\Debug\net7.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+D:\C#\FS13\NetCoreCourse\bin\Debug\net7.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+D:\C#\FS13\NetCoreCourse\bin\Debug\net7.0\Microsoft.Extensions.Identity.Core.dll
+D:\C#\FS13\NetCoreCourse\bin\Debug\net7.0\Microsoft.Extensions.Identity.Stores.dll
+D:\C#\FS13\NetCoreCourse\bin\Debug\net7.0\Microsoft.Extensions.Options.dll
+D:\C#\FS13\NetCoreCourse\bin\Debug\net7.0\Microsoft.IdentityModel.Abstractions.dll
+D:\C#\FS13\NetCoreCourse\bin\Debug\net7.0\Microsoft.IdentityModel.JsonWebTokens.dll
+D:\C#\FS13\NetCoreCourse\bin\Debug\net7.0\Microsoft.IdentityModel.Logging.dll
+D:\C#\FS13\NetCoreCourse\bin\Debug\net7.0\Microsoft.IdentityModel.Protocols.dll
+D:\C#\FS13\NetCoreCourse\bin\Debug\net7.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+D:\C#\FS13\NetCoreCourse\bin\Debug\net7.0\Microsoft.IdentityModel.Tokens.dll
+D:\C#\FS13\NetCoreCourse\bin\Debug\net7.0\System.IdentityModel.Tokens.Jwt.dll

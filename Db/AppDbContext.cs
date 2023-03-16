@@ -2,9 +2,12 @@ namespace NetCoreCourse.Db;
 
 using Microsoft.EntityFrameworkCore;
 using NetCoreCourse.Models;
-using System.Diagnostics;
 using Npgsql;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
+// IdentityUserContext<IdentityUser>
 public class AppDbContext : DbContext
 {
     private readonly IConfiguration _config;
@@ -17,6 +20,7 @@ public class AppDbContext : DbContext
     //with static created only once
     static AppDbContext() {
         NpgsqlConnection.GlobalTypeMapper.MapEnum<Course.CourseStatus>();
+        NpgsqlConnection.GlobalTypeMapper.MapEnum<ProjectRole>();
         AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
     }
         
@@ -33,9 +37,14 @@ public class AppDbContext : DbContext
     {   
         //map enum 
         modelBuilder.HasPostgresEnum<Course.CourseStatus>();
+        modelBuilder.HasPostgresEnum<ProjectRole>();
         //add indexing
         modelBuilder.Entity<Course>()
             .HasIndex(course => course.Name);
+
+        //tell EF to use composite primary key 
+        modelBuilder.Entity<ProjectStudent>()
+            .HasKey(ps => new {ps.StudentId, ps.ProjectId});
 
         modelBuilder.Entity<Student>()
             .HasIndex(s => s.Email)
@@ -75,4 +84,6 @@ public class AppDbContext : DbContext
     public DbSet<Student> Students {get; set;} = null!;
     public DbSet<Address> Addresses {get; set;} = null!;
     public DbSet<Assigment> Assigments {get; set;} = null!;
+    public DbSet<Project> Projects {get; set;} = null!;
+    public DbSet<ProjectStudent> ProjectStudents {get; set;} = null!;
 }

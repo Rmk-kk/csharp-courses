@@ -19,6 +19,8 @@ public class DbStudentService : DbCrudService<Student, StudentDTO>, IStudentServ
                         .Include(s => s.Address)
                         .Include(s => s.Course)
                         .Include(s => s.Assigments)
+                        .Include(s => s.ProjectLinks)
+                            .ThenInclude(pl => pl.Project)
                         .OrderBy(s => s.Id)
                         .ToListAsync();
     }
