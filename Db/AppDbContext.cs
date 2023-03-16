@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 // IdentityUserContext<IdentityUser>
-public class AppDbContext : IdentityUserContext<IdentityUser>
+public class AppDbContext : IdentityDbContext<User, IdentityRole<int>, int>
 {
     private readonly IConfiguration _config;
     private readonly ILogger<AppDbContext> _logger;
@@ -37,6 +37,8 @@ public class AppDbContext : IdentityUserContext<IdentityUser>
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {   
+        base.OnModelCreating(modelBuilder);
+        
         //map enum 
         modelBuilder.HasPostgresEnum<Course.CourseStatus>();
         modelBuilder.HasPostgresEnum<ProjectRole>();
@@ -78,8 +80,8 @@ public class AppDbContext : IdentityUserContext<IdentityUser>
         // modelBuilder.Entity<Student>()
         //     .Navigation(s => s.Address)
         //     .AutoInclude();
-
-        base.OnModelCreating(modelBuilder);
+        
+        modelBuilder.AddIdentityConfig();
     }
 
     public DbSet<Course> Courses {get; set;} = null!;

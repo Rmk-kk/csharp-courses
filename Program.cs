@@ -19,7 +19,9 @@ builder.Services
     });
 
 //adding auth
-// builder.Services.AddIdentity<IdentityUser, IdentityRole>();
+builder.Services
+    .AddIdentity<User, IdentityRole<int>>()
+    .AddEntityFrameworkStores<AppDbContext>();
 
 //Automapper
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
@@ -38,6 +40,7 @@ builder.Services.AddScoped<IProjectService, DbProjectsService>();
 //configuration file for Course
 builder.Services.Configure<CourseSettings>(builder.Configuration.GetSection("Course:Size"));
 
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -55,7 +58,7 @@ if (app.Environment.IsDevelopment())
         var dbContext = scope.ServiceProvider.GetService<AppDbContext>();
         var config = scope.ServiceProvider.GetService<IConfiguration>();
 
-        if(dbContext is not null && config.GetValue<bool>("CreateDbAtStart", false))
+        if(dbContext is not null && config!.GetValue<bool>("CreateDbAtStart", false))
         {
             dbContext!.Database.EnsureDeleted();
             dbContext.Database.EnsureCreated();
