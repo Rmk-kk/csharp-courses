@@ -53,8 +53,13 @@ if (app.Environment.IsDevelopment())
     using(var scope = app.Services.CreateScope())
     {
         var dbContext = scope.ServiceProvider.GetService<AppDbContext>();
-        dbContext!.Database.EnsureDeleted();
-        dbContext.Database.EnsureCreated();
+        var config = scope.ServiceProvider.GetService<IConfiguration>();
+
+        if(dbContext is not null && config.GetValue<bool>("CreateDbAtStart", false))
+        {
+            dbContext!.Database.EnsureDeleted();
+            dbContext.Database.EnsureCreated();
+        }
     }
 }
 

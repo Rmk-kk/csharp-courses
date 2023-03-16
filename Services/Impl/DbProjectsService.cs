@@ -14,12 +14,13 @@ namespace NetCoreCourse.Services
         public async Task<ICollection<Student>> GetStudentsFromCourse(int id)
         {
             var project = await _dbContext.Projects.SingleOrDefaultAsync(p => p.Id == id);
-            if(project is null)
-            {
-                
-            }
-            var studentIds = await _dbContext.ProjectStudents.Where(p => p.ProjectId == project.Id).Select(p => p.StudentId).ToListAsync();
-            var students = await _dbContext.Students.Where(s => studentIds.Contains(s.Id)).ToListAsync();
+            var studentIds = await _dbContext.ProjectStudents
+                            .Where(p => p.ProjectId == project!.Id)
+                            .Select(p => p.StudentId)
+                            .ToListAsync();
+            var students = await _dbContext.Students
+                            .Where(s => studentIds.Contains(s.Id))
+                            .ToListAsync();
             return students;
         }
 

@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 // IdentityUserContext<IdentityUser>
-public class AppDbContext : DbContext
+public class AppDbContext : IdentityUserContext<IdentityUser>
 {
     private readonly IConfiguration _config;
     private readonly ILogger<AppDbContext> _logger;
@@ -16,8 +16,10 @@ public class AppDbContext : DbContext
     {
         _config = config;
         _logger = logger;
-    } 
+    }
+
     //with static created only once
+    [Obsolete]
     static AppDbContext() {
         NpgsqlConnection.GlobalTypeMapper.MapEnum<Course.CourseStatus>();
         NpgsqlConnection.GlobalTypeMapper.MapEnum<ProjectRole>();
