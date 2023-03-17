@@ -5,6 +5,7 @@ namespace NetCoreCourse.Services
 {
     public interface IUserService
     {
-        Task<User> SignUpAsync(UserSignUpDTO request);
+        Task<User?> SignUpAsync(UserSignUpDTO request);
+        Task<UserSignInResponseDTO?> SignInAsync(UserSignInDTO request);
     }
 }

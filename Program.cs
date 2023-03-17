@@ -2,9 +2,7 @@ using NetCoreCourse.Services;
 using NetCoreCourse.Models;
 using System.Text.Json.Serialization;
 using NetCoreCourse.Db;
-using NetCoreCourse.DTOs;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,7 +18,15 @@ builder.Services
 
 //adding auth
 builder.Services
-    .AddIdentity<User, IdentityRole<int>>()
+    .AddIdentity<User, IdentityRole<int>>(options => 
+    {
+        options.Password.RequiredLength = 6;
+        //DONT DO IT IN PRODUCTION
+        options.Password.RequireDigit = false;
+        options.Password.RequireLowercase = false;
+        options.Password.RequireUppercase = false;
+        options.Password.RequireNonAlphanumeric = false;
+    })
     .AddEntityFrameworkStores<AppDbContext>();
 
 //Automapper
@@ -37,6 +43,9 @@ builder.Services.AddScoped<ICourseService, DbCourseService>();
 builder.Services.AddScoped<IStudentService, DbStudentService>();
 builder.Services.AddScoped<IAssigmentService, DbAssigmentService>();
 builder.Services.AddScoped<IProjectService, DbProjectsService>();
+builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<ITokenService, JWTTokenService>();
+
 //configuration file for Course
 builder.Services.Configure<CourseSettings>(builder.Configuration.GetSection("Course:Size"));
 
@@ -67,6 +76,9 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+//HAS TO BE BEFORE AUTHORAZATION!!
+app.UseAuthentication();
 
 app.UseAuthorization();
 
