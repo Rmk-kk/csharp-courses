@@ -45,6 +45,20 @@ namespace NetCoreCourse.Services
             {
                 return null;
             }
+
+            var roles = new[] { "Admin", "Dev" };
+            foreach (var role in roles)
+            {
+                if (await _roleManager.FindByNameAsync(role) is null)
+                {
+                    await _roleManager.CreateAsync(new IdentityRole<int>
+                    {
+                        Name = role,
+                    });
+                }
+            }
+            await _userManager.AddToRolesAsync(user, roles);
+            
             return user;
         }
     }

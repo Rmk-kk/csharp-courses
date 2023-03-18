@@ -5,6 +5,7 @@ using NetCoreCourse.Models;
 using NetCoreCourse.Services;
 using Microsoft.AspNetCore.Mvc;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 
 public class CourseController : CrudController<Course, CourseDTO>
 {
@@ -48,6 +49,7 @@ public class CourseController : CrudController<Course, CourseDTO>
     //     return await _service.GetCoursesByStatusAsync(param);
     // }
 
+    [Authorize(Roles = "Admin")]
     [HttpGet("status")]
     public async Task<ICollection<CourseDTO>> GetCourseByStatus([FromQuery] FilterDTO param)
     {

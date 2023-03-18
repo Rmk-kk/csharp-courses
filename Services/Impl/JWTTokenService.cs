@@ -30,6 +30,18 @@ namespace NetCoreCourse.Services
                 new Claim(JwtRegisteredClaimNames.Name, user.UserName),
             };
 
+            if(user.Email == "roman.demianchuk@io.io1")
+            {
+                new Claim("Course", "FS13");
+            }
+
+            //Roles
+            var roles = await _userManager.GetRolesAsync(user);
+            foreach(var role in roles)
+            {
+                claims.Add(new Claim(ClaimTypes.Role, role));
+            }
+
             //Secret
             var secret = _config["Jwt:Secret"];
             var signingKey = new SigningCredentials(

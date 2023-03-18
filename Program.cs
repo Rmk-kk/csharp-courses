@@ -53,6 +53,44 @@ builder.Services
         };
     });
 
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("FS13", policy =>
+    {
+        policy.RequireClaim("Course", "FS13");
+    });
+
+    options.AddPolicy("PremiumSubscriber", policy =>
+    {
+        policy.RequireClaim("subscriptionLevel", "Premium");
+    });
+
+    options.AddPolicy("MeOnly", policy =>
+    {
+        policy.RequireUserName("daniel.monero@gmail.com");
+    });
+    options.AddPolicy("AdminOnly", policy =>
+    {
+        policy.RequireRole("Admin"); // === [Authorsize(Roles = "Admin")]
+    });
+
+    // Allow access only if:
+    // - Has admin role
+    // - Age > 18
+    // - Never miss a lecture
+    // - Frontend score: > 4
+
+    options.AddPolicy("Custom", policy =>
+    {
+        policy.RequireAssertion(handler =>
+        {
+            // Do something to determine if user has access
+            // Get back the user object and do the checks
+            return true;
+        });
+    });
+});
+
 //Automapper
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 //Database connection
